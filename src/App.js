@@ -14,8 +14,8 @@ class App extends React.Component {
     this.setState({data: fetchedData});
   }
 
-  state = {  }
   render() { 
+    const data = this.state.data;
     return ( 
       <div className={styles.container}>
         <Cards data={this.state.data}/>
