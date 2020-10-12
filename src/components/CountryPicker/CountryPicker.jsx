@@ -3,7 +3,7 @@ import { fetchCountries } from "../../api";
 import {FormControl, NativeSelect} from '@material-ui/core';
 import styles from './CountryPicker.module.css'
 
-const CountryPicker = () => {
+const CountryPicker = ({handleCountryChange}) => {
     const [fetchedCountries, setFetchedCountries] = useState([]);
 
     useEffect(() => {
@@ -11,12 +11,12 @@ const CountryPicker = () => {
           setFetchedCountries(await fetchCountries());
         };
         fetchAPI();
-      });
+      }, []);
 
     return ( 
         <FormControl className={styles.formControl}>
-            <NativeSelect>
-                <option value="daily-us">Daily US</option>
+            <NativeSelect onChange={(e)=>handleCountryChange(e.target.value)}>
+                <option value="">United States</option>
                 {fetchedCountries.map((country, i) => <option key={i} value={country}>{country}</option>)}
             </NativeSelect>
         </FormControl>
